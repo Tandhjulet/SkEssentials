@@ -44,6 +44,10 @@ public class ExprSort extends SimpleExpression<Object> {
 
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, ParseResult parser) {
+        if (!(expressions[0] instanceof Variable)) {
+            Skript.error("You can only use variables when sorting (to avoid edge-cases and indexing errors)!");
+            return false;
+        }
 		listVariable = (Variable<?>) expressions[0];
 		String origstring = listVariable.isLocal() ? listVariable.toString().substring(2, listVariable.toString().length() - 1) : listVariable.toString().substring(1, listVariable.toString().length() - 1);
 		variableString = VariableString.newInstance(origstring, StringMode.VARIABLE_NAME);
@@ -58,8 +62,10 @@ public class ExprSort extends SimpleExpression<Object> {
     @Override
 	@SuppressWarnings("unchecked")
     protected TopNode[] get(Event event) {
-
         Map<String, Long> variable = (TreeMap<String, Long>) Variables.getVariable(variableString.toString(event), event, listVariable.isLocal());
+
+        if(variable == null)
+            return new TopNode[0];
 
 		Map<String, Long> sorted = variable.entrySet().stream()
                 .sorted(Entry.comparingByValue())

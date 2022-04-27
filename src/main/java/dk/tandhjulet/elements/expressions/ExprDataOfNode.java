@@ -87,7 +87,7 @@ public class ExprDataOfNode extends SimpleExpression<String> {
         if (this.loop == null) {
             parsedNode = (TopNode) node.getSingle(event);
         } else {
-            parsedNode = ((TopNode) loop.getCurrent(event));
+            parsedNode = (TopNode) loop.getCurrent(event);
         }
 
         switch (mark) {
