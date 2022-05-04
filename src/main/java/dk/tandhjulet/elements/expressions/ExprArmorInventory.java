@@ -1,6 +1,5 @@
 package dk.tandhjulet.elements.expressions;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -78,7 +77,6 @@ public class ExprArmorInventory extends SimpleExpression<Object> {
 		}
 		ItemStack[] array = new ItemStack[itemstacks.size()];
 		array = itemstacks.toArray(array);
-		Bukkit.broadcastMessage(array.getClass().toString());
 		return array;
 	}
 

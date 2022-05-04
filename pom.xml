@@ -29,6 +29,11 @@
             <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>com.github.azbh111</groupId>
+            <artifactId>craftbukkit-1.8.8</artifactId>
+            <version>R</version>
+        </dependency>
+        <dependency>
             <groupId>skript-jar</groupId>
             <artifactId>skript</artifactId>
             <version>2.2-dev37c</version>
