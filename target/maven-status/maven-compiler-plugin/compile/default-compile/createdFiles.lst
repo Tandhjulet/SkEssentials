@@ -9,6 +9,7 @@ dk\tandhjulet\elements\expressions\ExprDataOfNode.class
 dk\tandhjulet\elements\utils\TopNode.class
 dk\tandhjulet\elements\classinfo\TopNodeInfo.class
 dk\tandhjulet\elements\effects\EffActionBar.class
+dk\tandhjulet\elements\expressions\ExprIndexByValue.class
 dk\tandhjulet\elements\utils\CacheNode.class
 dk\tandhjulet\elements\expressions\ExprArmorInventory.class
 dk\tandhjulet\elements\expressions\ExprReverse.class

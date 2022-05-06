@@ -18,7 +18,7 @@ import ch.njol.skript.util.Utils;
 import ch.njol.util.Kleenean;
 import dk.tandhjulet.elements.utils.TopNode;
  
-public class ExprDataOfNode extends SimpleExpression<String> {
+public class ExprDataOfNode extends SimpleExpression<Object> {
 
     private Loop loop;
 
@@ -27,14 +27,14 @@ public class ExprDataOfNode extends SimpleExpression<String> {
     private int mark;
 
     static {
-        Skript.registerExpression(ExprDataOfNode.class, String.class, ExpressionType.PROPERTY, "name of %topnode%",
+        Skript.registerExpression(ExprDataOfNode.class, Object.class, ExpressionType.PROPERTY, "name of %topnode%",
                                                                                                 "value of %topnode%",
                                                                                                 "location of %topnode%");
     }
 
     @Override
-    public Class<? extends String> getReturnType() {
-        return String.class;
+    public Class<?> getReturnType() {
+        return Object.class;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ExprDataOfNode extends SimpleExpression<String> {
 
     @Override
     @Nullable
-    protected String[] get(Event event) {
+    protected Object[] get(Event event) {
         TopNode parsedNode;
         if (this.loop == null) {
             parsedNode = (TopNode) node.getSingle(event);
@@ -94,9 +94,9 @@ public class ExprDataOfNode extends SimpleExpression<String> {
             case 0:
                 return new String[] { parsedNode.getKey() };
             case 1:
-                return new String[] { parsedNode.getValue().toString() };
+                return new Number[] { parsedNode.getValue() };
             case 2:
-                return new String[] { Integer.toString(parsedNode.getLocation()+1) };
+                return new Number[] { parsedNode.getLocation()+1 };
         }
         return null;
     }
