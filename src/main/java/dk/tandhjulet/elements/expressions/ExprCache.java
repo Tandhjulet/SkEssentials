@@ -42,8 +42,8 @@ public class ExprCache extends SimpleExpression<Object> {
 	}
 
 	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "(cache|data) [being] stored (as|by id) %string%";
+	public String toString(@Nullable Event e, boolean debug) {
+		return "cache stored as " + cacheId.toString(e, debug);
 	}
 
 	@Override

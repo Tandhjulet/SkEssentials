@@ -57,7 +57,7 @@ public class ExprIndexByValue extends SimpleExpression<Object> {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "index of %object% in %variable%";
+		return "index of " + value.toString(arg0, arg1) + " in " + variableString.getDefaultVariableName();
 	}
 
 	@Override

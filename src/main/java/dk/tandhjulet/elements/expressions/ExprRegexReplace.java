@@ -41,7 +41,7 @@ public class ExprRegexReplace extends SimpleExpression<Object> {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "regex replace[d] [pattern] %string% with %string% in %string%";
+		return "regex replace " + pattern.toString(arg0, arg1) + " with " + toReplace.toString(arg0, arg1) + " in " + victim.toString(arg0, arg1);
 	}
 
 	@Override

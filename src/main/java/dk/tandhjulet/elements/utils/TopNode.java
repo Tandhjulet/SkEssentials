@@ -1,21 +1,21 @@
 package dk.tandhjulet.elements.utils;
 
 public class TopNode {
-	String key;
-	Number value;
+	Object key;
+	Object value;
 	int leaderboardLocation;
 
-	public TopNode(String key, Number value, int leaderboardLocation) {
+	public TopNode(Object key, Object value, int leaderboardLocation) {
 		this.key = key;
 		this.value = value;
 		this.leaderboardLocation = leaderboardLocation;
 	}
 
-	public String getKey() {
+	public Object getKey() {
 		return key;
 	}
 
-	public Number getValue() {
+	public Object getValue() {
 		return value;
 	}
 

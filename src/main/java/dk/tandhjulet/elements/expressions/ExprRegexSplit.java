@@ -13,7 +13,7 @@ import ch.njol.util.Kleenean;
 public class ExprRegexSplit extends SimpleExpression<Object> {
 
 	static {
-		Skript.registerExpression(ExprRegexSplit.class, Object.class, ExpressionType.COMBINED, "regex split %string% (with|by|pattern) %string%");
+		Skript.registerExpression(ExprRegexSplit.class, Object.class, ExpressionType.COMBINED, "regex split %string% (with|by [pattern]) %string%");
 	}
 
 	Expression<String> victim;
@@ -39,7 +39,7 @@ public class ExprRegexSplit extends SimpleExpression<Object> {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "regex split %string% (with|by|pattern) %string%";
+		return "regex split " + victim.toString(arg0, arg1) + " by " + pattern.toString(arg0, arg1);
 	}
 
 	@Override

@@ -62,7 +62,7 @@ public class TopNodeInfo {
 
 				@Override
 				public TopNode deserialize(Fields fields) throws StreamCorruptedException {
-					return new TopNode((String) fields.getPrimitive("key"), (Number) fields.getPrimitive("value"), (int) fields.getPrimitive("location"));
+					return new TopNode((String) fields.getPrimitive("key"), (Long) fields.getPrimitive("value"), (int) fields.getPrimitive("location"));
 				}
 
 				@Override

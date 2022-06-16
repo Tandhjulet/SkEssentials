@@ -28,7 +28,7 @@ public class CondRegexMatch extends Condition {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "%string%['[s] regex] matches %string%";
+		return toMatch.toString(arg0, arg1) + " matches " + matchAgainst.toString(arg0, arg1);
 	}
 
 	@Override

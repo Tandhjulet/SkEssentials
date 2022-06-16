@@ -27,7 +27,7 @@ public class ExprDataOfNode extends SimpleExpression<Object> {
     private int mark;
 
     static {
-        Skript.registerExpression(ExprDataOfNode.class, Object.class, ExpressionType.PROPERTY, "name of %topnode%",
+        Skript.registerExpression(ExprDataOfNode.class, Object.class, ExpressionType.PROPERTY, "index of %topnode%",
                                                                                                 "value of %topnode%",
                                                                                                 "location of %topnode%");
     }
@@ -77,7 +77,15 @@ public class ExprDataOfNode extends SimpleExpression<Object> {
 
     @Override
     public String toString(@Nullable Event event, boolean debug) {
-        return "name of node";
+        switch (mark) {
+            case 0:
+                return "index of node";
+            case 1:
+                return "value of node";
+            case 2:
+                return "location of node";
+        }
+        return null;
     }
 
     @Override
@@ -92,11 +100,11 @@ public class ExprDataOfNode extends SimpleExpression<Object> {
 
         switch (mark) {
             case 0:
-                return new String[] { parsedNode.getKey() };
+                return new Object[] { parsedNode.getKey() };
             case 1:
-                return new Number[] { parsedNode.getValue() };
+                return new Object[] { parsedNode.getValue() };
             case 2:
-                return new Number[] { parsedNode.getLocation()+1 };
+                return new Integer[] { parsedNode.getLocation()+1 };
         }
         return null;
     }

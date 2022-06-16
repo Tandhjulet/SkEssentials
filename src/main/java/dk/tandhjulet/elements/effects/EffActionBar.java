@@ -32,7 +32,7 @@ public class EffActionBar extends Effect {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "send [an] action bar [with [the] text] %string% to [the] %players%";
+		return "send action bar " + text.toString(arg0, arg1) + " to " + players.toString(arg0, arg1);
 	}
 
 	@Override

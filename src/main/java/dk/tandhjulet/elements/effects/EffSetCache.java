@@ -30,7 +30,7 @@ public class EffSetCache extends Effect {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "(cache|[temporarily ]store) " + data.toString() + " as " + name;
+		return "cache " + data.toString(arg0, arg1) + " as " + name.toString(arg0, arg1);
 	}
 
 	@Override
