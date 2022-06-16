@@ -1,7 +1,0 @@
-name: SkEssentials
-version: 0.0.4
-author: Tandhjulet
-main: dk.tandhjulet.SkEssentials
-
-depend: [Skript]
-softdepend: [Vault]
