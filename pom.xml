@@ -4,7 +4,7 @@
 
     <artifactId>skessentials</artifactId>
     <groupId>dk.tandhjulet</groupId>
-    <version>0.0.4</version>
+    <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
