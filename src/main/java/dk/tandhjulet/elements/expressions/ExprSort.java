@@ -1,8 +1,7 @@
 package dk.tandhjulet.elements.expressions;
 
 import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,9 +10,6 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
-
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
@@ -77,32 +73,21 @@ public class ExprSort extends SimpleExpression<Object> {
     @Override
     @SuppressWarnings("unchecked")
     protected TopNode[] get(Event event) {
-        BiMap<String, Object> variable = HashBiMap.create((TreeMap<String, Object>) Variables.getVariable(variableString.toString(event), event, listVariable.isLocal()));
+        HashMap<String, Object> variable = new HashMap<>((TreeMap<String, Object>) Variables.getVariable(variableString.toString(event), event, listVariable.isLocal()));
        
         AtomicInteger i = new AtomicInteger(-1);
         if (mark == 0) {
-            LinkedList<TopNode> sorted = new LinkedList<TopNode>();
+            TopNode[] sorted = new TopNode[variable.size()];
             
-            Object[] values = variable.values().toArray();
-            Arrays.sort(values, (x, y) -> {
-                try {
-                    return Double.compare(((Number) x).doubleValue(), ((Number) y).doubleValue());
-                } catch(Exception e) {
-                    if(Skript.debug())
-                        Skript.warning("Couldn't compare " + x.toString() + " to " + y.toString() + "!");
-                    return -1;
-                }
-            });
-
-            int size = values.length;
-            for(int j = 0; j < size; j++) {
-                sorted.add(new TopNode(variable.inverse().get(values[j]), values[j], j));
-            }
-
-            TopNode[] nodes = new TopNode[sorted.size()];
-            nodes = sorted.toArray(nodes);
-            return nodes;
-
+            sorted = variable.entrySet().stream()
+                .sorted((a,b) -> { 
+                    return Double.compare(((Number) a).doubleValue(), ((Number) b).doubleValue());
+                })
+                .map(index -> new TopNode(index.getKey(), index.getValue(), i.incrementAndGet()))
+                .toArray(TopNode[]::new);
+            
+            return sorted;
+            
         } else if (mark == 1) {
             Function<?> func = Functions.getFunction(this.func.getSingle(event));
             
