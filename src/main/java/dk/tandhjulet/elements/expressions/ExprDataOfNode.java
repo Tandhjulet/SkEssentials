@@ -34,6 +34,9 @@ public class ExprDataOfNode extends SimpleExpression<Object> {
 
     @Override
     public Class<?> getReturnType() {
+        if(this.mark == 2) {
+            return Integer.class;
+        }
         return Object.class;
     }
 
@@ -100,7 +103,7 @@ public class ExprDataOfNode extends SimpleExpression<Object> {
 
         switch (mark) {
             case 0:
-                return new Object[] { parsedNode.getKey() };
+                return new Object[] { parsedNode.getIndex() };
             case 1:
                 return new Object[] { parsedNode.getValue() };
             case 2:

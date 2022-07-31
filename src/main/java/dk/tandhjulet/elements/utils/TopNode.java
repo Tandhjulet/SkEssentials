@@ -1,18 +1,18 @@
 package dk.tandhjulet.elements.utils;
 
 public class TopNode {
-	Object key;
+	Object index;
 	Object value;
 	int leaderboardLocation;
 
-	public TopNode(Object key, Object value, int leaderboardLocation) {
-		this.key = key;
+	public TopNode(Object index, Object value, int leaderboardLocation) {
+		this.index = index;
 		this.value = value;
 		this.leaderboardLocation = leaderboardLocation;
 	}
 
-	public Object getKey() {
-		return key;
+	public Object getIndex() {
+		return index;
 	}
 
 	public Object getValue() {
@@ -25,6 +25,6 @@ public class TopNode {
 
 	@Override
 	public String toString() {
-		return "#" + (getLocation()+1) + " " + getKey() + ": " + getValue();
+		return "#" + (getLocation()+1) + " " + getIndex() + ": " + getValue();
 	}
 }

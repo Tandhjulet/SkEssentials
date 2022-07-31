@@ -38,7 +38,7 @@ public class ExprSort extends SimpleExpression<Object> {
 
     static {
         Skript.registerExpression(ExprSort.class, Object.class, ExpressionType.COMBINED, "[skessentials] sorted %objects%",
-                                                                                         "[skessentials] sorted %objects% (using|by) [function] %string%");
+                                                                                         "[skessentials] sorted %objects% (using|by) [the] [function] %string%");
     }
 
     @Override
@@ -85,14 +85,13 @@ public class ExprSort extends SimpleExpression<Object> {
             
             Object[] values = variable.values().toArray();
             Arrays.sort(values, (x, y) -> {
-                if(x instanceof Long && y instanceof Long)
-                    return ((Long) x).compareTo((Long) y);
-                else if(x instanceof Double && y instanceof Double)
-                    return ((Double) x).compareTo((Double) y);
-                else
+                try {
+                    return Double.compare(((Number) x).doubleValue(), ((Number) y).doubleValue());
+                } catch(Exception e) {
                     if(Skript.debug())
                         Skript.warning("Couldn't compare " + x.toString() + " to " + y.toString() + "!");
                     return -1;
+                }
             });
 
             int size = values.length;

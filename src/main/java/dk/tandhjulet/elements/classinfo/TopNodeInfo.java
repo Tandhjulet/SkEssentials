@@ -35,7 +35,7 @@ public class TopNodeInfo {
 
 				@Override
 				public String toVariableNameString(TopNode node) {
-					return "#" + (node.getLocation()+1) + " " + node.getKey() + ": " + node.getValue();
+					return "#" + (node.getLocation()+1) + " " + node.getIndex() + ": " + node.getValue();
 				}
 
 				@Override
@@ -53,7 +53,7 @@ public class TopNodeInfo {
 				@Override
 				public Fields serialize(TopNode node) throws NotSerializableException {
 					Fields fields = new Fields();
-					fields.putPrimitive("key", node.getKey());
+					fields.putPrimitive("index", node.getIndex());
 					fields.putPrimitive("value", node.getValue());
 					fields.putPrimitive("location", node.getLocation());
 					return fields;

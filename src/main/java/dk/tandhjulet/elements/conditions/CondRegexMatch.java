@@ -15,27 +15,27 @@ public class CondRegexMatch extends Condition {
 		Skript.registerCondition(CondRegexMatch.class, "%string% matches [the] [regex] %string%");
 	}
 
-	Expression<String> toMatch;
-	Expression<String> matchAgainst;
+	Expression<String> string;
+	Expression<String> pattern;
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, ParseResult arg3) {
-		toMatch = (Expression<String>) arg0[0];
-		matchAgainst = (Expression<String>) arg0[1];
+		string = (Expression<String>) arg0[0];
+		pattern = (Expression<String>) arg0[1];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return toMatch.toString(arg0, arg1) + " matches " + matchAgainst.toString(arg0, arg1);
+		return string.toString(arg0, arg1) + " matches " + pattern.toString(arg0, arg1);
 	}
 
 	@Override
 	public boolean check(Event arg0) {
-		String toMatch = this.toMatch.getSingle(arg0);
-		String matchAgainst = this.matchAgainst.getSingle(arg0);
-		return matchAgainst.matches(toMatch);
+		String string = this.string.getSingle(arg0);
+		String pattern = this.pattern.getSingle(arg0);
+		return string.matches(pattern);
 	}
 	
 }

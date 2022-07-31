@@ -17,7 +17,8 @@ import ch.njol.util.Kleenean;
 public class EffRestoreInv extends Effect {
 
 	static {
-		Skript.registerEffect(EffRestoreInv.class, "restore %player%'s inventory from %objects%");
+		Skript.registerEffect(EffRestoreInv.class, "restore %player%'s inventory from %objects%",
+													"restore %player%'s full equipment from %objects%");
 	}
 
 	Expression<Player> player;
