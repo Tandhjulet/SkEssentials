@@ -12,17 +12,17 @@
 
     <repositories>
         <repository>
-            <id>in-project</id>
-            <name>Skript</name>
-            <url>file://${project.basedir}/libs</url>
-        </repository>
-        <repository>
             <id>essentials-releases</id>
             <url>https://repo.essentialsx.net/releases/</url>
         </repository>
         <repository>
             <id>paper-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>skript-releases</id>
+            <name>Skript Repository</name>
+            <url>https://repo.skriptlang.org/releases</url>
         </repository>
     </repositories>
 
@@ -31,26 +31,39 @@
             <groupId>org.github.paperspigot</groupId>
             <artifactId>paperspigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.github.azbh111</groupId>
             <artifactId>craftbukkit-1.8.8</artifactId>
             <version>R</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>31.0.1-jre</version>
-        </dependency>
-        <dependency>
-            <groupId>skript-jar</groupId>
-            <artifactId>skript</artifactId>
-            <version>2.2-dev37c</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>3.0.2</version>
+            <groupId>com.github.SkriptLang</groupId>
+            <artifactId>Skript</artifactId>
+            <version>dev37c</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sk89q</groupId>
+                    <artifactId>worldedit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sk89q</groupId>
+                    <artifactId>commandbook</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.marcelo-mason</groupId>
+                    <artifactId>PreciousStones</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.milkbowl.vault</groupId>
+                    <artifactId>Vault</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -58,12 +71,19 @@
             <artifactId>EssentialsX</artifactId>
             <version>2.19.0</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bstats</groupId>
+                    <artifactId>bstats-bukkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.0</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
@@ -73,14 +93,6 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                    <outputDirectory>../Test Servers/Paper/plugins</outputDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
@@ -88,12 +100,34 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>shade</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>LICENSE</exclude>
+                                <exclude>META-INF/**</exclude>
+                                <exclude>META-INF/*.MF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
@@ -101,14 +135,6 @@
                         </relocation>
                     </relocations>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
