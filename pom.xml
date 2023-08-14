@@ -4,7 +4,7 @@
 
     <artifactId>skessentials</artifactId>
     <groupId>dk.tandhjulet</groupId>
-    <version>1.0</version>
+    <version>1.0.2</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,6 +86,13 @@
             <scope>compile</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.4</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -98,6 +105,15 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <outputDirectory>C:\Users\Tandhjul\Desktop\1.8.9\plugins</outputDirectory>
                 </configuration>
             </plugin>
 

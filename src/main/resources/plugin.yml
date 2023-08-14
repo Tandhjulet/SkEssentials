@@ -1,7 +1,7 @@
 name: SkEssentials
-version: 1.0
+version: 1.0.2
 author: Tandhjulet
 main: dk.tandhjulet.SkEssentials
 
 depend: [Skript]
-softdepend: [Vault]
+softdepend: [Vault, LuckPerms]

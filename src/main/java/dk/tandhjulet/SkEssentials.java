@@ -4,18 +4,24 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 import org.bstats.bukkit.Metrics;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import dk.tandhjulet.elements.utils.CacheManager;
+import dk.tandhjulet.listeners.LuckPermsListener;
+import net.luckperms.api.LuckPerms;
 
 public class SkEssentials extends JavaPlugin {
-    
+
     SkEssentials instance;
     SkriptAddon addon;
-    static JavaPlugin plugin;
+    static SkEssentials plugin;
     static CacheManager cacheManager;
+
+    static LuckPerms luckPermsAPI;
 
     @Override
     public void onEnable() {
@@ -27,6 +33,13 @@ public class SkEssentials extends JavaPlugin {
         instance = this;
         addon = Skript.registerAddon(this);
         cacheManager = new CacheManager();
+
+        Plugin plugin;
+        if ((plugin = Bukkit.getPluginManager().getPlugin("LuckPerms")) != null && plugin.isEnabled()) {
+            luckPermsAPI = getServer().getServicesManager().load(LuckPerms.class);
+            new LuckPermsListener();
+            getLogger().info("Hooked into LuckPerms!");
+        }
 
         try {
             addon.loadClasses("dk.tandhjulet", "elements");
@@ -42,7 +55,15 @@ public class SkEssentials extends JavaPlugin {
         getLogger().log(Level.INFO, "Shutting down! Goodbye, cruel world.");
     }
 
-    public static JavaPlugin getPlugin() {
+    public static LuckPerms getLuckPermsAPI() {
+        return luckPermsAPI;
+    }
+
+    public static boolean isLuckPermsHooked() {
+        return luckPermsAPI != null;
+    }
+
+    public static SkEssentials getPlugin() {
         return plugin;
     }
 
