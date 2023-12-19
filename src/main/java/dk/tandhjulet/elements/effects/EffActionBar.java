@@ -40,10 +40,10 @@ public class EffActionBar extends Effect {
 		Player[] players = this.players.getArray(arg0);
 		String text = this.text.getSingle(arg0);
 
-		for(Player player : players) {
-			PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(text), (byte)2);
-				((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+		for (Player player : players) {
+			PacketPlayOutChat packet = new PacketPlayOutChat(new ChatComponentText(text), (byte) 2);
+			((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
 		}
 	}
-	
+
 }

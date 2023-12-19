@@ -16,10 +16,6 @@
             <url>https://repo.essentialsx.net/releases/</url>
         </repository>
         <repository>
-            <id>paper-repo</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
-        </repository>
-        <repository>
             <id>skript-releases</id>
             <name>Skript Repository</name>
             <url>https://repo.skriptlang.org/releases</url>
@@ -28,16 +24,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.github.paperspigot</groupId>
-            <artifactId>paperspigot-api</artifactId>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.azbh111</groupId>
-            <artifactId>craftbukkit-1.8.8</artifactId>
-            <version>R</version>
             <scope>provided</scope>
         </dependency>
 
