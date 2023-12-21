@@ -5,12 +5,14 @@ import java.math.BigDecimal;
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import dk.tandhjulet.SkEssentials;
+import dk.tandhjulet.events.CustomSignUpdateEvent;
 import dk.tandhjulet.events.PermissionAddEvent;
 import dk.tandhjulet.events.PermissionRemoveEvent;
 import dk.tandhjulet.events.UserGroupAddEvent;
@@ -41,6 +43,33 @@ public class BukkitEventValues {
         } else {
             SkEssentials.getPlugin().getLogger().warning("Please install Essentials to use economy-based syntaxes!");
         }
+
+        EventValues.registerEventValue(CustomSignUpdateEvent.class, Player.class,
+                new Getter<Player, CustomSignUpdateEvent>() {
+                    @Override
+                    @Nullable
+                    public Player get(final CustomSignUpdateEvent event) {
+                        return event.getPlayer();
+                    }
+                }, 0);
+
+        EventValues.registerEventValue(CustomSignUpdateEvent.class, String[].class,
+                new Getter<String[], CustomSignUpdateEvent>() {
+                    @Override
+                    @Nullable
+                    public String[] get(final CustomSignUpdateEvent event) {
+                        return event.getLines();
+                    }
+                }, 0);
+
+        EventValues.registerEventValue(CustomSignUpdateEvent.class, Location.class,
+                new Getter<Location, CustomSignUpdateEvent>() {
+                    @Override
+                    @Nullable
+                    public Location get(final CustomSignUpdateEvent event) {
+                        return event.getLocation();
+                    }
+                }, 0);
 
         if (SkEssentials.isLuckPermsHooked()) {
             EventValues.registerEventValue(PermissionAddEvent.class, OfflinePlayer.class,
