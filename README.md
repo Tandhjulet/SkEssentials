@@ -1,5 +1,4 @@
 # Leder du efter pluginnets docs?
-https://tandhjulet.gitbook.io/skessentials/
 [![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=SkEssentials)
 
 # Hvad er SkEssentials?
