@@ -11,12 +11,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import dk.tandhjulet.elements.utils.CacheManager;
+import dk.tandhjulet.listeners.JoinListener;
 import dk.tandhjulet.listeners.LuckPermsListener;
 import net.luckperms.api.LuckPerms;
 
 public class SkEssentials extends JavaPlugin {
 
-    SkEssentials instance;
     SkriptAddon addon;
     static SkEssentials plugin;
     static CacheManager cacheManager;
@@ -30,7 +30,9 @@ public class SkEssentials extends JavaPlugin {
         new Metrics(this, 15421);
 
         plugin = this;
-        instance = this;
+
+        JoinListener.register();
+
         addon = Skript.registerAddon(this);
         cacheManager = new CacheManager();
 
@@ -65,10 +67,6 @@ public class SkEssentials extends JavaPlugin {
 
     public static SkEssentials getPlugin() {
         return plugin;
-    }
-
-    public SkEssentials getInstance() {
-        return instance;
     }
 
     public SkriptAddon getAddonInstance() {
