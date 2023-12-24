@@ -46,8 +46,8 @@ public class SkEssentials extends JavaPlugin {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-        getLogger().log(Level.INFO, "Successfully loaded SkEssentials.");
 
+        getLogger().log(Level.INFO, "Successfully loaded SkEssentials.");
     }
 
     @Override

@@ -25,6 +25,6 @@ public class TopNode {
 
 	@Override
 	public String toString() {
-		return "#" + (getLocation()+1) + " " + getIndex() + ": " + getValue();
+		return "#" + (getLocation() + 1) + " " + getIndex() + ": " + getValue();
 	}
 }

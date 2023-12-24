@@ -10,22 +10,23 @@ import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.PacketPlayOutBlockChange;
 
 public class Utils {
-    public static void updateBlock(Player p, Location location) {
-        BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
-        PacketPlayOutBlockChange packet = new PacketPlayOutBlockChange(((CraftWorld) location.getWorld()).getHandle(),
+    public final static void updateBlock(final Player p, final Location location) {
+        final BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
+        final PacketPlayOutBlockChange packet = new PacketPlayOutBlockChange(
+                ((CraftWorld) location.getWorld()).getHandle(),
                 pos);
 
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
     }
 
-    public static Location locationBehindPlayer(Player p) {
+    public final static Location locationBehindPlayer(final Player p) {
         return locationBehindPlayer(p, 5);
     }
 
-    public static Location locationBehindPlayer(Player p, Integer distance) {
-        Vector pDirection = p.getEyeLocation().getDirection();
+    public final static Location locationBehindPlayer(final Player p, final int distance) {
+        final Vector pDirection = p.getEyeLocation().getDirection();
 
-        Vector x1 = pDirection.multiply(-distance);
+        final Vector x1 = pDirection.multiply(-distance);
         return p.getLocation().add(x1);
     }
 }
