@@ -25,7 +25,7 @@ public class SkEssentials extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().log(Level.INFO, "Loading... Please report any errors on discord: Tandhjulet#3264!");
+        getLogger().log(Level.INFO, "Loading... Please report any errors on the plugins GitHub page.");
 
         new Metrics(this, 15421);
 
